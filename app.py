@@ -29,7 +29,7 @@ def fit_model(X, y):
         "base_score": np.mean(y_train),
         "eval_metric": "logloss",
     }
-    model = xgboost.train(params, d_train, 100, evals = [(d_val, "val")], verbose_eval=10, early_stopping_rounds=20)
+    model = xgboost.train(params, d_train, 10, evals = [(d_val, "val")], verbose_eval=10, early_stopping_rounds=20)
     preds = [1 if p > threshold else 0 for p in model.predict(d_test)]
     model_accuracy = round(accuracy_score(y_test, preds), 3)
 
